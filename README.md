@@ -16,3 +16,14 @@ senha	varchar(80)
 telefone varchar(15)
 foto varchar(250)
 datanasc datetime
+
+tbveiculo
+id int(11) (pk, ai)
+marca varchar(200)
+modelo varchar(200)
+ano int(11)
+cor varchar(200)
+placa varchar(8)
+motor varchar(100)
+km int(11)
+valor decimal(10,2)
