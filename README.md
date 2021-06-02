@@ -27,3 +27,6 @@ placa varchar(8)
 motor varchar(100)
 km int(11)
 valor decimal(10,2)
+
+ALTER TABLE tbusuario
+ADD UNIQUE (login)
