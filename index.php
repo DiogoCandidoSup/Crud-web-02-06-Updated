@@ -24,34 +24,31 @@ if(isset($_POST['btn-entrar'])):
 		// 105 OR 1=1 
 	    // 1; DROP TABLE teste
 
-		$sql = "SELECT login FROM tbusuario WHERE login = '$login'";
+		$sql = "SELECT * FROM tbusuario WHERE login = '$login'";
 		$resultado = mysqli_query($connect, $sql);		
 
 		if(mysqli_num_rows($resultado) > 0):
 		//$senha = md5($senha);       
-		$sql = "SELECT * FROM tbusuario WHERE login = '$login' AND senha = '$senha'";
 
-
-
-		$resultado = mysqli_query($connect, $sql);
-
-			if(mysqli_num_rows($resultado) == 1):
-				$dados = mysqli_fetch_array($resultado);
+		//$sql = "SELECT * FROM tbusuario WHERE login = '$login' AND senha = '$senha'";
+		 $dados = mysqli_fetch_array($resultado);
+			
+		        if(password_verify($_POST['senha'],$dados['senha'])){
+				
 				mysqli_close($connect);
 				$_SESSION['logado'] = true;
 				$_SESSION['id_usuario'] = $dados['id'];
 				header('Location: home.php');
-			else:
+				}else{
+			
 				$erros[] = "<li> Usuário e senha não conferem </li>";
-			endif;
-
+				}
 		else:
 			$erros[] = "<li> Usuário inexistente </li>";
 		endif;
-
 	endif;
-
 endif;
+
 ?>
 
 <html>
